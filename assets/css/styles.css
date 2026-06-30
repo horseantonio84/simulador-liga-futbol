@@ -1,0 +1,313 @@
+/* =============================================
+   LIGA 'L QUESIN - Estilo Estadio
+   Solo lo que Bootstrap no puede hacer
+   Preparado para modo oscuro/claro
+   ============================================= */
+
+/* --- Variables modo oscuro (por defecto) --- */
+:root {
+  --color-fondo: #0d1117;
+  --color-superficie: #161b22;
+  --color-card: #1c2230;
+  --color-primario: #f5a623;
+  --color-primario-hover: #ffc043;
+  --color-texto: #f0f0f0;
+  --color-texto-suave: #8b949e;
+  --color-borde: #30363d;
+  --color-oro: #ffd700;
+  --color-plata: #c0c0c0;
+  --color-bronce: #cd7f32;
+  --color-descenso: red
+}
+
+/* --- Variables modo claro (para el futuro) --- */
+[data-theme="light"] {
+  --color-fondo: #f4f6f8;
+  --color-superficie: #ffffff;
+  --color-card: #ffffff;
+  --color-primario: #d4860a;
+  --color-primario-hover: #f5a623;
+  --color-texto: #1a1a2e;
+  --color-texto-suave: #555555;
+  --color-borde: #d0d7de;
+}
+
+/* --- Body --- */
+body {
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+}
+
+/* --- Navbar --- */
+.navbar {
+  background-color: var(--color-superficie) !important;
+  border-bottom: 3px solid var(--color-primario);
+}
+
+.navbar-brand {
+  color: var(--color-primario) !important;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.navbar-brand img {
+  filter: drop-shadow(0 0 8px var(--color-primario));
+}
+
+.nav-link {
+  color: var(--color-texto) !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  transition: color 0.2s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--color-primario) !important;
+}
+
+.dropdown-menu {
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-top: 2px solid var(--color-primario);
+}
+
+.dropdown-item {
+  color: var(--color-texto);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.dropdown-item:hover {
+  background-color: var(--color-card);
+  color: var(--color-primario);
+}
+
+.btn-outline-success {
+  border-color: var(--color-primario);
+  color: var(--color-primario);
+  font-weight: 600;
+}
+
+.btn-outline-success:hover {
+  background-color: var(--color-primario);
+  border-color: var(--color-primario);
+  color: #000;
+}
+
+.btn-outline-light {
+  color: var(--color-texto);
+  border-color: var(--color-borde);
+  font-weight: 600;
+}
+
+.btn-outline-light:hover {
+  background-color: var(--color-primario);
+  border-color: var(--color-primario);
+  color: #000;
+}
+
+/* --- Títulos --- */
+h1 {
+  color: var(--color-texto);
+  letter-spacing: 2px;
+  text-shadow: none;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+h1::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-primario);
+  margin: 0.4rem auto 0;
+  border-radius: 2px;
+}
+
+/* --- Tabla --- */
+.table {
+  background-color: var(--color-card);
+  color: var(--color-texto);
+  border-color: var(--color-borde);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.table thead th {
+  background-color: var(--color-superficie) !important;
+  color: var(--color-primario) !important;
+  border-color: var(--color-borde) !important;
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 0.9rem 0.6rem;
+}
+
+.table tbody tr {
+  border-color: var(--color-borde);
+  transition: background-color 0.15s, transform 0.1s;
+}
+
+.table tbody tr:hover td {
+  background-color: var(--color-superficie) !important;
+  color: var(--color-texto);
+}
+
+.table tbody td {
+  border-color: var(--color-borde);
+  color: var(--color-texto);
+  vertical-align: middle;
+  padding: 0.7rem 0.6rem;
+  background-color: var(--color-card) !important;
+}
+
+/* Top 3 posiciones */
+.table tbody tr:nth-child(1) td:first-child {
+  color: var(--color-oro);
+  font-weight: 800;
+  font-size: 1rem;
+}
+.table tbody tr:nth-child(2) td:first-child {
+  color: var(--color-plata);
+  font-weight: 800;
+  font-size: 1rem;
+}
+.table tbody tr:nth-child(3) td:first-child {
+  color: var(--color-bronce);
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+/* Puntos destacados */
+.table tbody td:nth-child(3) {
+  color: var(--color-primario);
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+/* Borde izquierdo top 4 */
+.table tbody tr:nth-child(1),
+.table tbody tr:nth-child(2),
+.table tbody tr:nth-child(3),
+.table tbody tr:nth-child(4) {
+  border-left: 3px solid var(--color-primario);
+}
+
+/* Borde izquierdo descenso */
+.table tbody tr:nth-child(10),
+.table tbody tr:nth-child(11),
+.table tbody tr:nth-child(12) {
+  border-left: 3px solid var(--color-descenso);
+}
+
+/* --- Lista móvil --- */
+.list-group-item {
+  background-color: var(--color-card);
+  color: var(--color-texto);
+  border-color: var(--color-borde);
+  transition: background-color 0.15s;
+  font-weight: 500;
+}
+
+.list-group-item:hover {
+  background-color: var(--color-superficie);
+}
+
+.list-group-numbered > .list-group-item::before {
+  color: var(--color-primario);
+  font-weight: 800;
+}
+
+/* --- Footer --- */
+footer {
+  background-color: var(--color-superficie) !important;
+  border-top: 3px solid var(--color-primario);
+  color: var(--color-texto-suave);
+}
+
+footer a {
+  color: var(--color-primario) !important;
+  transition: opacity 0.2s;
+}
+
+footer a:hover {
+  opacity: 0.75;
+}
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--color-fondo); }
+::-webkit-scrollbar-thumb { background: var(--color-primario); border-radius: 3px; }
+
+
+/* --- Footer mejorado --- */
+footer {
+  background-color: var(--color-superficie) !important;
+  border-top: 3px solid var(--color-primario);
+  color: var(--color-texto-suave);
+}
+
+.liga-nombre {
+  color: var(--color-primario);
+}
+
+.footer-desc {
+  color: var(--color-texto-suave);
+  line-height: 1.6;
+}
+
+.footer-titulo {
+  color: var(--color-primario);
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+}
+
+.footer-links li {
+  margin-bottom: 0.4rem;
+}
+
+.footer-links a {
+  color: var(--color-texto-suave);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--color-primario);
+}
+
+.footer-icon {
+  color: var(--color-texto-suave);
+  font-size: 1.3rem;
+  transition: color 0.2s, transform 0.2s;
+  text-decoration: none;
+}
+
+.footer-icon:hover {
+  color: var(--color-primario);
+  transform: translateY(-3px);
+}
+
+.footer-divider {
+  border-color: var(--color-borde);
+  opacity: 1;
+}
+
+.footer-copy {
+  color: var(--color-texto-suave);
+}
+
+.footer-copy a {
+  color: var(--color-primario);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.footer-copy a:hover {
+  opacity: 0.75;
+}
