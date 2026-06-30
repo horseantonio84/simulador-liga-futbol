@@ -59,7 +59,6 @@ function pintarEquiposTabla(arrayEquipos) {
     miTr.append(miTdPos, miTdEquipo, miTdPuntos, miTdPJ, miTdPG, miTdPE, miTdPP, miTdGF, miTdGC, miTdDG);
     miTbody.append(miTr);
 
-    console.log(miTbody);
   });
 }
 

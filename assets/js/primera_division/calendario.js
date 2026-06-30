@@ -49,54 +49,75 @@ function pintarJornada(indiceJornada) {
   miEstadoJornada.append(miIcono, miTextoEstado);
 
   jornada.partidos.forEach((partido) => {
-    miListaPartidos.append(crearTarjetaPartido(partido));
+    miListaPartidos.append(crearColumnaPartido(partido));
   });
 }
 
-function crearTarjetaPartido(partido) {
-  const miDivCard = document.createElement("div");
-  miDivCard.classList.add("partido-card", "d-flex", "align-items-center", "justify-content-between", "p-3");
+function crearColumnaPartido(partido) {
+  const miCol = document.createElement("div");
+  miCol.classList.add("col-12", "col-md-6", "col-lg-4");
+
+  miCol.append(crearCardPartido(partido));
+
+  return miCol;
+}
+
+function crearCardPartido(partido) {
+  const miCard = document.createElement("div");
+  miCard.classList.add("card", "h-100");
+
+  const miCardBody = document.createElement("div");
+  miCardBody.classList.add("card-body", "p-3");
+
+  const miFila = document.createElement("div");
+  miFila.classList.add("d-flex", "align-items-center", "justify-content-between");
 
   // --- Equipo local ---
   const miDivLocal = document.createElement("div");
-  miDivLocal.classList.add("d-flex", "align-items-center", "gap-2", "equipo-local");
+  miDivLocal.classList.add("d-flex", "flex-column", "align-items-center", "gap-2", "flex-fill");
 
   const miImgLocal = document.createElement("img");
   miImgLocal.src = partido.equipoLocal.logo;
   miImgLocal.alt = partido.equipoLocal.nombre;
-  miImgLocal.width = 36;
-  miImgLocal.height = 36;
+  miImgLocal.classList.add("img-equipo-card");
 
   const miSpanLocal = document.createElement("span");
-  miSpanLocal.classList.add("fw-bold");
+  miSpanLocal.classList.add("fw-bold", "text-center", "text-truncate", "mw-100");
   miSpanLocal.textContent = partido.equipoLocal.nombre;
 
   miDivLocal.append(miImgLocal, miSpanLocal);
 
   // --- Resultado ---
   const miDivResultado = document.createElement("div");
-  miDivResultado.classList.add("resultado-partido", "fw-bold");
+  miDivResultado.classList.add("resultado-partido-card", "fw-bold", "flex-shrink-0", "px-2");
   miDivResultado.textContent = partido.jugado
     ? `${partido.golesLocal} : ${partido.golesVisitante}`
     : "- : -";
 
   // --- Equipo visitante ---
   const miDivVisitante = document.createElement("div");
-  miDivVisitante.classList.add("d-flex", "align-items-center", "gap-2", "equipo-visitante");
-
-  const miSpanVisitante = document.createElement("span");
-  miSpanVisitante.classList.add("fw-bold");
-  miSpanVisitante.textContent = partido.equipoVisitante.nombre;
+  miDivVisitante.classList.add("d-flex", "flex-column", "align-items-center", "gap-2", "flex-fill");
 
   const miImgVisitante = document.createElement("img");
   miImgVisitante.src = partido.equipoVisitante.logo;
   miImgVisitante.alt = partido.equipoVisitante.nombre;
-  miImgVisitante.width = 36;
-  miImgVisitante.height = 36;
+  miImgVisitante.classList.add("img-equipo-card");
 
-  miDivVisitante.append(miSpanVisitante, miImgVisitante);
+  const miSpanVisitante = document.createElement("span");
+  miSpanVisitante.classList.add("fw-bold", "text-center", "text-truncate", "mw-100");
+  miSpanVisitante.textContent = partido.equipoVisitante.nombre;
 
-  miDivCard.append(miDivLocal, miDivResultado, miDivVisitante);
+  miDivVisitante.append(miImgVisitante, miSpanVisitante);
 
-  return miDivCard;
+  miFila.append(miDivLocal, miDivResultado, miDivVisitante);
+
+  // --- Estado del partido ---
+  const miDivEstado = document.createElement("div");
+  miDivEstado.classList.add("estado-partido","text-center", "small", "border-top", "pt-2", "mt-3");
+  miDivEstado.textContent = partido.jugado ? "Finalizado" : "Pendiente de disputa";
+
+  miCardBody.append(miFila, miDivEstado);
+  miCard.append(miCardBody);
+
+  return miCard;
 }

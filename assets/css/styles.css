@@ -163,6 +163,7 @@ h1::after {
   vertical-align: middle;
   padding: 0.7rem 0.6rem;
   background-color: var(--color-card) !important;
+  cursor:pointer;
 }
 
 /* Top 3 posiciones */
@@ -334,17 +335,6 @@ footer {
   box-shadow: 0 0 0 0.2rem rgba(245, 166, 35, 0.25);
 }
 
-.partido-card {
-  background-color: var(--color-card);
-  border: 1px solid var(--color-borde);
-  border-radius: 8px;
-  transition: border-color 0.15s;
-}
-
-.partido-card:hover {
-  border-color: var(--color-primario);
-}
-
 .equipo-local,
 .equipo-visitante {
   flex: 1;
@@ -356,9 +346,28 @@ footer {
   text-align: right;
 }
 
-.resultado-partido {
-  min-width: 70px;
-  text-align: center;
-  font-size: 1.1rem;
+.card {
+  background-color: var(--color-card);
+  border-color: var(--color-borde);
+  transition: border-color 0.15s;
+  color: var(--color-texto)
+}
+
+.card:hover{
+  border-color: var(--color-primario);
+  cursor: pointer;
+}
+
+.estado-partido{
+  color: var(--color-primario);
+}
+
+.img-equipo-card {
+  width: 56px;
+  height: 56px;
+}
+
+.resultado-partido-card {
+  font-size: 1.3rem;
   color: var(--color-texto);
 }
