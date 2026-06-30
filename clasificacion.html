@@ -71,7 +71,7 @@
     </header>
 
     <!-- ════════════════ CONTENIDO PRINCIPAL ════════════════ -->
-    <main class="container mt-4 mb-5" style="min-height: 60vh">
+    <main class="container mt-4 mb-5">
       <h1 class="text-center mb-4">Clasificación Liga 'L Quesin</h1>
 
       <div class="row">
@@ -79,7 +79,7 @@
 
           <!-- Tabla de clasificación: versión escritorio (se oculta en móvil) -->
           <div class="d-none d-lg-block">
-            <table class="table text-center table-bordered">
+            <table class="table text-center table-bordered table-hover">
               <thead class="table-dark">
                 <tr>
                   <th>POS</th>
@@ -148,11 +148,11 @@
           <div class="col-12 col-md-6 col-lg-2 text-center text-md-end">
             <h6 class="footer-titulo text-uppercase fw-bold mb-3">Síguenos</h6>
             <div class="d-flex gap-3 justify-content-center justify-content-md-end">
-              <a href="#" class="footer-icon" title="Instagram"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="footer-icon" title="YouTube"><i class="bi bi-youtube"></i></a>
-              <a href="#" class="footer-icon" title="TikTok"><i class="bi bi-tiktok"></i></a>
-              <a href="#" class="footer-icon" title="Discord"><i class="bi bi-discord"></i></a>
-              <a href="#" class="footer-icon" title="GitHub"><i class="bi bi-github"></i></a>
+              <a href="https://www.instagram.com/idark84_" target="_blank" class="footer-icon" title="Instagram"><i class="bi bi-instagram"></i></a>
+              <a href="https://www.youtube.com/@CODIGO_DARK84" target="_blank" class="footer-icon" title="YouTube"><i class="bi bi-youtube"></i></a>
+              <a href="https://www.tiktok.com/@pasteldesandia84" target="_blank" class="footer-icon" title="TikTok"><i class="bi bi-tiktok"></i></a>
+              <a href="https://discord.gg/TNQqZGqXeF" target="_blank" class="footer-icon" title="Discord"><i class="bi bi-discord"></i></a>
+              <a href="https://github.com/horseantonio84" target="_blank" class="footer-icon" title="GitHub"><i class="bi bi-github"></i></a>
             </div>
           </div>
         </div>
@@ -169,6 +169,57 @@
       </div>
     </footer>
 
+
+    <!-- ════════════════ MODAL DETALLE EQUIPO ════════════════ -->
+    <div class="modal fade" id="modal-equipo" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="d-flex align-items-center gap-2">
+              <img class="modal-equipo-logo" src="" alt="" width="40" height="40" />
+              <h5 class="modal-title modal-equipo-nombre mb-0"></h5>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+
+          <div class="modal-body">
+            <!-- Estadísticas del equipo -->
+            <div class="d-flex justify-content-around text-center flex-wrap gap-2 mb-3">
+              <div><div class="fw-bold modal-equipo-pj"></div><small>PJ</small></div>
+              <div><div class="fw-bold modal-equipo-puntos"></div><small>PTS</small></div>
+              <div><div class="fw-bold modal-equipo-pg"></div><small>V</small></div>
+              <div><div class="fw-bold modal-equipo-pe"></div><small>E</small></div>
+              <div><div class="fw-bold modal-equipo-pp"></div><small>D</small></div>
+              <div><div class="fw-bold modal-equipo-gf"></div><small>GF</small></div>
+              <div><div class="fw-bold modal-equipo-gc"></div><small>GC</small></div>
+              <div><div class="fw-bold modal-equipo-dg"></div><small>DG</small></div>
+            </div>
+
+            <!-- Pestañas -->
+            <ul class="nav nav-tabs" id="modal-equipo-tabs" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="tab-historial-btn" data-bs-toggle="tab" data-bs-target="#tab-historial" type="button" role="tab" aria-controls="tab-historial" aria-selected="true">Historial</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab-plantilla-btn" data-bs-toggle="tab" data-bs-target="#tab-plantilla" type="button" role="tab" aria-controls="tab-plantilla" aria-selected="false">Plantilla</button>
+              </li>
+            </ul>
+
+            <div class="tab-content pt-3">
+              <!-- Historial -->
+              <div class="tab-pane fade show active" id="tab-historial" role="tabpanel" aria-labelledby="tab-historial-btn">
+                <ul class="list-group modal-equipo-historial"></ul>
+              </div>
+
+              <!-- Plantilla -->
+              <div class="tab-pane fade" id="tab-plantilla" role="tabpanel" aria-labelledby="tab-plantilla-btn">
+                <div class="modal-equipo-plantilla"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- ════════════════ SCRIPTS ════════════════ -->
     <!-- JS de Bootstrap (menú hamburguesa, dropdowns, etc.) -->

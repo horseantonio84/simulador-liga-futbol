@@ -15,7 +15,7 @@
   <body>
     <!-- ════════════════ HEADER / BARRA DE NAVEGACIÓN ════════════════ -->
     <header>
-      <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+      <nav class="navbar navbar-dark bg-dark navbar-expand-xl">
         <div class="container-fluid">
           <!-- Logo + nombre de la liga -->
           <a class="navbar-brand" href="clasificacion.html">
@@ -68,12 +68,18 @@
 
     <!-- ════════════════ CONTENIDO PRINCIPAL ════════════════ -->
     <!-- Pendiente de implementar: aquí irá el calendario de jornadas/partidos -->
-    <main class="container mt-4 mb-5" style="min-height: 60vh">
+    <main class="container mt-4 mb-5">
       <!-- Barra de control: selector de jornada + botones de acción -->
       <div class="d-flex flex-wrap gap-2 align-items-center mb-4">
         <select id="selector-jornada" class="form-select w-auto fw-bold"></select>
-        <button class="btn btn-success fw-bold"><i class="bi bi-play-fill"></i> Simular esta jornada</button>
-        <button class="btn btn-warning fw-bold"><i class="bi bi-lightning-fill"></i> Simular toda la liga</button>
+        <div class="d-md-none d-flex gap-2">
+          <button class="btn btn-success fw-bold" title="Simular esta jornada"><i class="bi bi-play-fill"></i></button>
+          <button class="btn btn-warning fw-bold" title="Simular toda la liga"><i class="bi bi-lightning-fill"></i></button>
+        </div>
+        <div class="d-none d-md-flex gap-2">
+          <button class="btn btn-success fw-bold" title="Simular esta jornada"><i class="bi bi-play-fill"></i> Simular esta jornada</button>
+          <button class="btn btn-warning fw-bold" title="Simular toda la liga"><i class="bi bi-lightning-fill"></i> Simular toda la liga</button>
+        </div>
       </div>
 
       <!-- Título de la jornada actual -->

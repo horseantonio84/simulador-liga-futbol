@@ -55,7 +55,7 @@ function pintarJornada(indiceJornada) {
 
 function crearColumnaPartido(partido) {
   const miCol = document.createElement("div");
-  miCol.classList.add("col-12", "col-md-6", "col-lg-4");
+  miCol.classList.add("col-12", "col-lg-6");
 
   miCol.append(crearCardPartido(partido));
 
@@ -74,15 +74,16 @@ function crearCardPartido(partido) {
 
   // --- Equipo local ---
   const miDivLocal = document.createElement("div");
-  miDivLocal.classList.add("d-flex", "flex-column", "align-items-center", "gap-2", "flex-fill");
+  miDivLocal.classList.add("equipo-local", "d-flex", "flex-column", "align-items-center", "gap-2", "flex-fill");
 
   const miImgLocal = document.createElement("img");
   miImgLocal.src = partido.equipoLocal.logo;
   miImgLocal.alt = partido.equipoLocal.nombre;
-  miImgLocal.classList.add("img-equipo-card");
+  miImgLocal.classList.add("img-equipo-card", "flex-shrink-0");
 
   const miSpanLocal = document.createElement("span");
-  miSpanLocal.classList.add("fw-bold", "text-center", "text-truncate", "mw-100");
+  miSpanLocal.title = partido.equipoLocal.nombre;
+  miSpanLocal.classList.add("fw-bold", "text-center", "text-truncate", "w-100");
   miSpanLocal.textContent = partido.equipoLocal.nombre;
 
   miDivLocal.append(miImgLocal, miSpanLocal);
@@ -96,15 +97,16 @@ function crearCardPartido(partido) {
 
   // --- Equipo visitante ---
   const miDivVisitante = document.createElement("div");
-  miDivVisitante.classList.add("d-flex", "flex-column", "align-items-center", "gap-2", "flex-fill");
+  miDivVisitante.classList.add("equipo-visitante", "d-flex", "flex-column", "align-items-center", "gap-2", "flex-fill");
 
   const miImgVisitante = document.createElement("img");
   miImgVisitante.src = partido.equipoVisitante.logo;
   miImgVisitante.alt = partido.equipoVisitante.nombre;
-  miImgVisitante.classList.add("img-equipo-card");
+  miImgVisitante.classList.add("img-equipo-card", "flex-shrink-0");
 
   const miSpanVisitante = document.createElement("span");
-  miSpanVisitante.classList.add("fw-bold", "text-center", "text-truncate", "mw-100");
+  miSpanVisitante.title = partido.equipoVisitante.nombre;
+  miSpanVisitante.classList.add("fw-bold", "text-center", "text-truncate", "w-100");
   miSpanVisitante.textContent = partido.equipoVisitante.nombre;
 
   miDivVisitante.append(miImgVisitante, miSpanVisitante);

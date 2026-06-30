@@ -26,6 +26,15 @@ class Equipo {
     get diferenciaGoles() {
         return this.gf - this.gc;
     }
+
+    get jugadoresPorPosicion() {
+        // Agrupa this.jugadores en un objeto { Portero: [...], Defensa: [...], Medio: [...], Delantero: [...] }
+        return this.jugadores.reduce((grupos, jugador) => {
+            if (!grupos[jugador.posicion]) grupos[jugador.posicion] = [];
+            grupos[jugador.posicion].push(jugador);
+            return grupos;
+        }, {});
+    }
 }
 
 class Jugador{

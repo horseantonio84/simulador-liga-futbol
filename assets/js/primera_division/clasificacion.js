@@ -1,4 +1,5 @@
 import { listaEquipos } from "../shared/data.js";
+import { mostrarModalEquipo } from "../shared/modalEquipo.js";
 
 const miTbody = document.getElementById("equipos-tabla");
 const miUL = document.getElementById("equipos-lista");
@@ -9,6 +10,21 @@ document.addEventListener("DOMContentLoaded", () => {
   pintarEquiposLista(equiposPrimera);
 });
 
+// Delegación de eventos: un único listener en el contenedor en vez de
+// un onclick por cada fila/elemento generado dinámicamente.
+miTbody.addEventListener("click", (evento) => manejarClickEquipo(evento, miTbody));
+miUL.addEventListener("click", (evento) => manejarClickEquipo(evento, miUL));
+
+function manejarClickEquipo(evento, contenedor) {
+  const filaPulsada = evento.target.closest(".fila-equipo");
+  if (!filaPulsada || !contenedor.contains(filaPulsada)) return;
+
+  const equipo = listaEquipos.find((equipo) => equipo.id === filaPulsada.dataset.id);
+  if (!equipo) return;
+
+  mostrarModalEquipo(equipo);
+}
+
 
 function pintarEquiposTabla(arrayEquipos) {
   if (!Array.isArray(arrayEquipos)) {
@@ -17,6 +33,8 @@ function pintarEquiposTabla(arrayEquipos) {
 
   arrayEquipos.forEach((equipo, indice) => {
     const miTr = document.createElement("tr");
+    miTr.dataset.id = equipo.id;
+    miTr.classList.add("fila-equipo");
 
     const miTdPos = document.createElement("td");
     const miTdEquipo = document.createElement("td");
@@ -78,7 +96,8 @@ function pintarEquiposLista(arrayEquipos) {
     const miSpanNombre = document.createElement("span");
     const miSpanPuntos = document.createElement("span");
 
-    miLi.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center");
+    miLi.dataset.id = equipo.id;
+    miLi.classList.add("list-group-item", "fila-equipo", "d-flex", "justify-content-between", "align-items-center");
     miDivEquipo.classList.add("d-flex", "align-items-center", "gap-2");
     miSpanPuntos.classList.add("badge", "bg-secondary");
 
