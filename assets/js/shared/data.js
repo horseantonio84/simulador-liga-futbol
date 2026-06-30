@@ -49,6 +49,32 @@ class Jugador{
     }
 }
 
+class Partido {
+    constructor(equipoLocal, equipoVisitante) {
+        this.equipoLocal = equipoLocal;
+        this.equipoVisitante = equipoVisitante;
+        this.golesLocal = null;
+        this.golesVisitante = null;
+    }
+
+    get jugado() {
+        return this.golesLocal !== null && this.golesVisitante !== null;
+    }
+}
+
+class Jornada {
+    constructor(numero, partidos = []) {
+        this.numero = numero;
+        this.partidos = partidos; // Array de objetos Partido
+    }
+
+    get finalizada() {
+        return this.partidos.every(partido => partido.jugado);
+    }
+}
+
+
+
 const listaEquipos = [
     new Equipo("E001", "Asturians", "ASTURIANS.png", "#00A8FF", "#FF8C00",2),
     new Equipo("E002", "Atletico Elite", "ATLETICO_ELITE.png", "#D4AF37", "#000000",2),
@@ -76,4 +102,4 @@ const listaEquipos = [
     new Equipo("E024", "Veljkoneta FC", "VELJKONETA_FC.png", "#009432", "#FFFFFF",1)
 ];
 
-export {listaEquipos}
+export { listaEquipos, Partido, Jornada };

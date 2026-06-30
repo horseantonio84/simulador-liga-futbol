@@ -311,3 +311,54 @@ footer {
 .footer-copy a:hover {
   opacity: 0.75;
 }
+
+
+/* --- Calendario / Partidos --- */
+.jornada-numero {
+  color: var(--color-primario);
+}
+
+.estado-jornada {
+  color: var(--color-texto-suave);
+  letter-spacing: 1px;
+}
+
+.form-select {
+  background-color: var(--color-card);
+  color: var(--color-texto);
+  border-color: var(--color-borde);
+}
+
+.form-select:focus {
+  border-color: var(--color-primario);
+  box-shadow: 0 0 0 0.2rem rgba(245, 166, 35, 0.25);
+}
+
+.partido-card {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-borde);
+  border-radius: 8px;
+  transition: border-color 0.15s;
+}
+
+.partido-card:hover {
+  border-color: var(--color-primario);
+}
+
+.equipo-local,
+.equipo-visitante {
+  flex: 1;
+  min-width: 0;
+}
+
+.equipo-visitante {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.resultado-partido {
+  min-width: 70px;
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--color-texto);
+}
