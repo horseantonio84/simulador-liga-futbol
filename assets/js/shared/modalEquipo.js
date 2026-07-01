@@ -25,6 +25,7 @@ function mostrarModalEquipo(equipo) {
   pintarEstadisticasEquipo(miModalEl, equipo);
   pintarHistorialEquipo(miModalEl, equipo);
   pintarPlantillaEquipo(miModalEl, equipo);
+  pintarFormacionEquipo(miModalEl, equipo);
 
   // Reutilizamos la misma instancia del modal en vez de crear una nueva cada vez
   if (!modalBootstrap) {
@@ -145,6 +146,95 @@ function crearFilaJugador(jugador) {
   });
 
   return miTr;
+}
+
+function pintarFormacionEquipo(miModalEl, equipo) {
+  const miCampo = miModalEl.querySelector(".modal-equipo-formacion");
+  miCampo.textContent = "";
+
+  const miEtiqueta = document.createElement("div");
+  miEtiqueta.classList.add("formacion-etiqueta");
+  miEtiqueta.textContent = equipo.formacion;
+  miCampo.append(miEtiqueta);
+
+  const grupos = equipo.jugadoresPorPosicion;
+  const usados = { Portero: 0, Defensa: 0, Medio: 0, Delantero: 0 };
+
+  generarSlotsFormacion(equipo.formacion).forEach((slot) => {
+    const jugadoresPosicion = grupos[slot.posicion] || [];
+    const jugador = jugadoresPosicion[usados[slot.posicion]];
+    usados[slot.posicion]++;
+    miCampo.append(crearMonigoteJugador(slot, jugador, equipo));
+  });
+}
+
+function crearMonigoteJugador(slot, jugador, equipo) {
+  const miWrapper = document.createElement("div");
+  miWrapper.classList.add("jugador-monigote");
+  miWrapper.style.top = `${slot.top}%`;
+  miWrapper.style.left = `${slot.left}%`;
+
+  const miCirculo = document.createElement("div");
+  miCirculo.classList.add("jugador-circulo");
+  miCirculo.style.backgroundColor = equipo.colorPrincipal;
+  miCirculo.style.borderColor = equipo.colorSecundario;
+  miCirculo.textContent = jugador ? obtenerInicialesJugador(jugador.nombre) : "?";
+
+  const miNombre = document.createElement("span");
+  miNombre.classList.add("jugador-nombre-etiqueta");
+  miNombre.textContent = jugador ? jugador.nombre : "Libre";
+
+  miWrapper.append(miCirculo, miNombre);
+  return miWrapper;
+}
+
+function obtenerInicialesJugador(nombre) {
+  return nombre
+    .split(" ")
+    .filter(Boolean)
+    .map((palabra) => palabra[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+}
+
+// Convierte un string de formación (ej. "4-3-3") en 11 posiciones (top/left en %)
+// repartidas en líneas: Portero, Defensa, Medio y Delantero.
+function generarSlotsFormacion(formacion) {
+  const lineas = String(formacion || "4-3-3")
+    .split("-")
+    .map(Number)
+    .filter((numero) => Number.isFinite(numero) && numero > 0);
+
+  // Si la formación trae más de 3 líneas (ej. "4-2-3-1"), las extra se suman
+  // a la línea de delanteros para no perder jugadores.
+  while (lineas.length > 3) {
+    const sobrante = lineas.pop();
+    lineas[lineas.length - 1] += sobrante;
+  }
+  while (lineas.length < 3) lineas.push(0);
+
+  const [defensas, medios, delanteros] = lineas;
+
+  return [
+    { posicion: "Portero", top: 90, left: 50 },
+    ...generarLineaFormacion("Defensa", defensas, 70),
+    ...generarLineaFormacion("Medio", medios, 46),
+    ...generarLineaFormacion("Delantero", delanteros, 20),
+  ];
+}
+
+function generarLineaFormacion(posicion, cantidad, top) {
+  if (cantidad <= 0) return [];
+
+  const margen = 16;
+  const ancho = 100 - margen * 2;
+
+  return Array.from({ length: cantidad }, (_, indice) => ({
+    posicion,
+    top,
+    left: margen + ((indice + 0.5) * ancho) / cantidad,
+  }));
 }
 
 export { mostrarModalEquipo };
